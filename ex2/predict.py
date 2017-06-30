@@ -1,4 +1,4 @@
-from numpy import round
+from numpy import round, dot
 
 from sigmoid import sigmoid
 
@@ -15,7 +15,9 @@ def predict(theta, X):
 #               You should set p to a vector of 0's and 1's
 #
 
-
+    p = round(sigmoid(dot(X,theta.T)))
 # =========================================================================
 
     return p
+
+

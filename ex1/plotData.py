@@ -19,5 +19,12 @@ def plotData(data):
 #       markers larger by using plot(..., 'rx', 'MarkerSize', 10);
 
     plt.figure()  # open a new figure window
+    plt.plot(data[:,0], data[:,1], 'rx', 10); # Plot the data
+    plt.ylabel("Profit in $10,000s"); # Set the yaxis label
+    plt.xlabel("Population of City in 10,000s"); # Set the xaxis label
+
+
+
+
 
 # ============================================================

@@ -4,9 +4,13 @@ import numpy as np
 from matplotlib import use
 use('TkAgg')
 
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex3")
+
 from oneVsAll import oneVsAll
 from predictOneVsAll import predictOneVsAll
 from displayData import displayData
+
 
 #  Instructions
 #  ------------
@@ -37,7 +41,7 @@ num_labels = 10          # 10 labels, from 1 to 10
 # Load Training Data
 print 'Loading and Visualizing Data ...'
 
-data = scipy.io.loadmat('ex3data1.mat') # training data stored in arrays X, y
+data = scipy.io.loadmat('C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex3\ex3data1.mat') # training data stored in arrays X, y
 X = data['X']
 y = data['y']
 m, _ = X.shape
@@ -48,7 +52,7 @@ sel = X[rand_indices[0:100], :]
 
 displayData(sel)
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## ============ Part 2: Vectorize Logistic Regression ============
 #  In this part of the exercise, you will reuse your logistic regression

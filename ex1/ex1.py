@@ -5,6 +5,9 @@ import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 from sklearn import linear_model
 
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex1")
+
 from gradientDescent import gradientDescent
 from computeCost import computeCost
 from warmUpExercise import warmUpExercise
@@ -43,8 +46,9 @@ warmup = warmUpExercise()
 print warmup
 raw_input("Program paused. Press Enter to continue...")
 
+
 # ======================= Part 2: Plotting =======================
-data = np.loadtxt('ex1data1.txt', delimiter=',')
+data = np.loadtxt("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex1\ex1data1.txt", delimiter=',')
 m = data.shape[0]
 X = np.vstack(zip(np.ones(m),data[:,0]))
 y = data[:, 1]
@@ -53,13 +57,18 @@ y = data[:, 1]
 # Note: You have to complete the code in plotData.py
 print 'Plotting Data ...'
 plotData(data)
-show()
+#show()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
+
+print X
+print y
+
 
 # =================== Part 3: Gradient descent ===================
 print 'Running Gradient Descent ...'
 theta = np.zeros(2)
+
 
 # compute and display initial cost
 J = computeCost(X, y, theta)

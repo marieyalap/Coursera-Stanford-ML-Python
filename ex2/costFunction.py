@@ -1,4 +1,4 @@
-from numpy import log
+from numpy import log, dot
 from sigmoid import sigmoid
 
 def costFunction(theta, X,y):
@@ -10,6 +10,9 @@ def costFunction(theta, X,y):
     m = y.size # number of training examples
 
 
+    J= sum(-y*log(sigmoid(dot(X,theta.T)))-(1-y)*log(1-sigmoid(dot(X,theta.T))))/m
+
+
 # ====================== YOUR CODE HERE ======================
 # Instructions: Compute the cost of a particular choice of theta.
 #               You should set J to the cost.
@@ -19,3 +22,5 @@ def costFunction(theta, X,y):
 # Note: grad should have the same dimensions as theta
 #
     return J
+
+ 
