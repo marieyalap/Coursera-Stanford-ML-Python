@@ -84,24 +84,17 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     pred2.shape
     J=0
     G=np.zeros((num_labels,m + 1))
-    Theta1=Theta1[:,1:]
-    Theta2=Theta2[:,1:]
-    w=np.dot(Theta1.T,Theta1)
-    c=np.dot(Theta2.T,Theta2)
+    Theta1b=Theta1[:,1:]
+    Theta2b=Theta2[:,1:]
+    w=np.dot(Theta1b.T,Theta1b)
+    c=np.dot(Theta2b.T,Theta2b)
    
-
-    for i in range(num_labels) :
-        #y[i].shape
-        #log(pred2).T.shape
-        #G[i]=((-np.dot(y[i],log(pred2.T[i])))-np.dot((1-y[i]),log(1-pred2.T[i])))/m
-        #J=G[i]
-        #i=i+1
-        G[i]=((-np.dot(y[i],log(pred2.T[i])))-np.dot((1-y[i]),log(1-pred2.T[i])))/m 
-
-    J=sum(G)+ (Lambda/(2*m))*(sum(np.diagonal(c))+sum(np.diagonal(w)))
-    J=J[0]
-    grad=0 #
-
+    a=-np.dot(y,log(pred2))
+    b=np.dot((1-y),log(1-pred2))
+        
+        
+    J=(sum(np.diagonal(a)) - sum(np.diagonal(b)))/m + (Lambda/(2*m))*(sum(np.diagonal(c))+sum(np.diagonal(w)))
+    grad=0
 
 
     # Unroll gradient
@@ -111,3 +104,5 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     return J, grad
 
 
+
+       
