@@ -5,11 +5,13 @@ use('TkAgg')
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2")
 
 import pandas as pd
 
 from ml import mapFeature, plotData, plotDecisionBoundary
-from show import show
+#from show import show
 from costFunctionReg import costFunctionReg
 from gradientFunctionReg import gradientFunctionReg
 from sigmoid import sigmoid
@@ -32,8 +34,7 @@ def plotBoundary(theta, X, y):
     # Labels and Legend
     plt.xlabel('Microchip Test 1')
     plt.ylabel('Microchip Test 2')
-    show()
-
+    #show()
 
 
 # Initialization
@@ -42,7 +43,7 @@ def plotBoundary(theta, X, y):
 #  The first two columns contains the X values and the third column
 #  contains the label (y).
 
-data = pd.read_csv('ex2data2.txt', header=None, names=[1,2,3])
+data = pd.read_csv('C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2\ex2data2.txt', header=None, names=[1,2,3])
 X = data[[1, 2]]
 y = data[[3]]
 
@@ -51,8 +52,8 @@ plotData(X.values, y.values)
 # Labels and Legend
 plt.xlabel('Microchip Test 1')
 plt.ylabel('Microchip Test 2')
-show()
-raw_input("Program paused. Press Enter to continue...")
+#show()
+#raw_input("Program paused. Press Enter to continue...")
 
 
 # =========== Part 1: Regularized Logistic Regression ============
@@ -61,7 +62,7 @@ raw_input("Program paused. Press Enter to continue...")
 
 # Note that mapFeature also adds a column of ones for us, so the intercept
 # term is handled
-X = X.apply(mapFeature, axis=1)
+X = X.apply(mapFeature, axis=1) #tra,sforme reg lineaire en poly
 
 # Initialize fitting parameters
 initial_theta = np.zeros(X.shape[1])
@@ -89,7 +90,7 @@ print 'lambda = ' + str(Lambda)
 print 'Cost at theta found by scipy: %f' % cost
 print 'theta:', ["%0.4f" % i for i in theta]
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 plotBoundary(theta, X, y)
 
@@ -98,7 +99,7 @@ p = np.round(sigmoid(X.dot(theta)))
 acc = np.mean(np.where(p == y.T,1,0)) * 100
 print 'Train Accuracy: %f' % acc
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 # ============= Part 3: Optional Exercises =============
 
@@ -109,4 +110,4 @@ for Lambda in np.arange(0.0,10.1,1.0):
     print 'lambda = ' + str(Lambda)
     print 'theta:', ["%0.4f" % i for i in theta]
     plotBoundary(theta, X, y)
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")

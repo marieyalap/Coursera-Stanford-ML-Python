@@ -1,3 +1,6 @@
+from numpy import dot
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2")
 from sigmoid import sigmoid
 from numpy import squeeze, asarray
 
@@ -19,5 +22,8 @@ def gradientFunction(theta, X, y):
 
 
 # =============================================================
+    grad=dot((sigmoid(dot(X,theta.T))-y).T,X)/m
+
 
     return grad
+

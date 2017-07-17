@@ -1,6 +1,11 @@
 from numpy import asfortranarray, squeeze, asarray
-
+import numpy as np
 from gradientFunction import gradientFunction
+from numpy import dot
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2")
+from sigmoid import sigmoid
+from numpy import squeeze, asarray
 
 
 def gradientFunctionReg(theta, X, y, Lambda):
@@ -19,5 +24,11 @@ def gradientFunctionReg(theta, X, y, Lambda):
 
 
 # =============================================================
-
+    theta0=np.copy(theta)
+    np.put(theta0,0,0)
+    grad=dot((sigmoid(dot(X,theta.T))-y.T),X)/m+ (Lambda/m)*theta0
+    
     return grad
+
+
+    

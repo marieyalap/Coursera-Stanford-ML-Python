@@ -1,6 +1,6 @@
 import numpy as np
-
-from ex2.sigmoid import sigmoid
+from numpy import log, dot
+from sigmoid import sigmoid
 from sigmoidGradient import sigmoidGradient
 
 
@@ -27,7 +27,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
 # Setup some useful variables
     m, _ = X.shape
-
+   
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: You should complete the code by working through the
@@ -67,8 +67,47 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
     # =========================================================================
 
+##Partie 1 :
+   
+    MatY=np.ndarray(shape=(num_labels,m), dtype=float, order='F')
+    for c in range(num_labels) :
+        MatY[c] = [1 if i==(c+1) else 0 for i in y]
+        
+    y=MatY
+    y.shape
+    
+    X = np.column_stack((np.ones((m, 1)), X)) #
+    pred1=sigmoid(np.dot(Theta1,X.T)).T
+    u, _=pred1.shape
+    pred1=np.column_stack((np.ones((u,1)),pred1))
+    pred2=sigmoid(np.dot(Theta2,pred1.T)).T
+    pred2.shape
+    J=0
+    G=np.zeros((num_labels,m + 1))
+    Theta1=Theta1[:,1:]
+    Theta2=Theta2[:,1:]
+    w=np.dot(Theta1.T,Theta1)
+    c=np.dot(Theta2.T,Theta2)
+   
+
+    for i in range(num_labels) :
+        #y[i].shape
+        #log(pred2).T.shape
+        #G[i]=((-np.dot(y[i],log(pred2.T[i])))-np.dot((1-y[i]),log(1-pred2.T[i])))/m
+        #J=G[i]
+        #i=i+1
+        G[i]=((-np.dot(y[i],log(pred2.T[i])))-np.dot((1-y[i]),log(1-pred2.T[i])))/m 
+
+    J=sum(G)+ (Lambda/(2*m))*(sum(np.diagonal(c))+sum(np.diagonal(w)))
+    J=J[0]
+    grad=0 #
+
+
+
     # Unroll gradient
-    grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
+    #grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
 
 
     return J, grad
+
+

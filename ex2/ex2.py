@@ -49,6 +49,7 @@ data = np.loadtxt("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2\
 X = data[:, 0:2]
 y = data[:, 2]
 
+
 # ==================== Part 1: Plotting ====================
 
 print 'Plotting data with + indicating (y = 1) examples and o indicating (y = 0) examples.'
@@ -71,7 +72,7 @@ X = np.concatenate((np.ones((m, 1)), X), axis=1)
 
 # Initialize fitting parameters
 initial_theta = np.zeros(n + 1)
-
+print initial_theta
 # Compute and display initial cost and gradient
 cost = costFunction(initial_theta, X, y)
 print 'Cost at initial theta (zeros): %f' % cost

@@ -13,9 +13,9 @@ def randInitializeWeights(L_in, L_out):
     #
     # Note: The first row of W corresponds to the parameters for the bias units
     #
-
-
-
+    epsilon = 0.12
+    #W= np.random.rand(L_out*2*epsilon - epsilon, (1 + L_in)*2*epsilon - epsilon)
+    W= np.random.rand(L_out, 1 + L_in)*2*epsilon - epsilon
 # =========================================================================
 
     return W

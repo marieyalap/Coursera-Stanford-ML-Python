@@ -10,7 +10,7 @@ def costFunction(theta, X,y):
     m = y.size # number of training examples
 
 
-    J= sum(-y*log(sigmoid(dot(X,theta.T)))-(1-y)*log(1-sigmoid(dot(X,theta.T))))/m
+    J=( -dot(y,log(sigmoid(dot(X,theta))))-dot((1-y),log(1-sigmoid(dot(X,theta)))))/m 
 
 
 # ====================== YOUR CODE HERE ======================

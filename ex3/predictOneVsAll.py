@@ -1,6 +1,6 @@
 import numpy as np
 
-from ex2.sigmoid import sigmoid
+from sigmoid import sigmoid
 
 def predictOneVsAll(all_theta, X):
     """will return a vector of predictions
@@ -17,13 +17,20 @@ def predictOneVsAll(all_theta, X):
 
     # Add ones to the X data matrix
     X = np.column_stack((np.ones((m, 1)), X))
+    pred=sigmoid(np.dot(all_theta,X.T)).T
+    pred.shape
+    
+    p=pred.max(1) 
+    p=np.argmax(pred, axis=1)
+    
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Complete the following code to make predictions using
 #               your learned logistic regression parameters (one-vs-all).
 #               You should set p to a vector of predictions (from 1 to
-#               num_labels).
-#
+#               num_label
+
+
 # Hint: This code can be done all vectorized using the max function.
 #       In particular, the max function can also return the index of the 
 #       max element, for more information see 'help max'. If your examples 

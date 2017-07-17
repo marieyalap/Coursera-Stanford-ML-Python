@@ -14,18 +14,19 @@
 #  For this exercise, you will not need to change any code in this file,
 #  or any other files other than those mentioned above.
 #
-
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex4")
 import numpy as np
 import scipy.io
 from scipy.optimize import minimize
 
-from ex3.displayData import displayData
-from ex3.predict import predict
+#from ex3.displayData import displayData
+from predict import predict #
 from nnCostFunction import nnCostFunction
 from sigmoidGradient import sigmoidGradient
 from randInitializeWeights import randInitializeWeights
 from checkNNGradients import checkNNGradients
-
+import os
 ## Setup the parameters you will use for this exercise
 input_layer_size  = 400  # 20x20 Input Images of Digits
 hidden_layer_size = 25   # 25 hidden units
@@ -38,20 +39,21 @@ num_labels = 10          # 10 labels, from 1 to 10
 #
 
 # Load Training Data
-print 'Loading and Visualizing Data ...'
+#print 'Loading and Visualizing Data ...'
 
-data = scipy.io.loadmat('ex4data1.mat')
+data = scipy.io.loadmat(os.getcwd()+'\\Documents\\GitHub\\Coursera-Stanford-ML-Python\\ex4\\ex4data1.mat')
 X = data['X']
 y = data['y']
 m, _ = X.shape
-
+y.shape
+X.shape
 # Randomly select 100 data points to display
 rand_indices = np.random.permutation(range(m))
 sel = X[rand_indices[0:100], :]
 
 displayData(sel)
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ================ Part 2: Loading Parameters ================
@@ -61,7 +63,7 @@ raw_input("Program paused. Press Enter to continue...")
 print 'Loading Saved Neural Network Parameters ...'
 
 # Load the weights into variables Theta1 and Theta2
-data = scipy.io.loadmat('ex4weights.mat')
+data = scipy.io.loadmat(os.getcwd()+'\\Documents\\GitHub\\Coursera-Stanford-ML-Python\\ex4\\ex4weights.mat')
 Theta1 = data['Theta1']
 Theta2 = data['Theta2']
 y = np.squeeze(y)
@@ -81,17 +83,18 @@ nn_params = np.hstack((Theta1.T.ravel(), Theta2.T.ravel()))
 #  first so that it will be easier for you to debug. Later, in part 4, you
 #  will get to implement the regularized cost.
 #
-print 'Feedforward Using Neural Network ...'
+#print 'Feedforward Using Neural Network ...'
 
 # Weight regularization parameter (we set this to 0 here).
 Lambda = 0
 
 J, _ = nnCostFunction(nn_params, input_layer_size, hidden_layer_size,
     num_labels, X, y, Lambda)
+J.shape #
 
 print 'Cost at parameters (loaded from ex4weights): %f \n(this value should be about 0.287629)\n' % J
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## =============== Part 4: Implement Regularization ===============
 #  Once your cost function implementation is correct, you should now
@@ -101,13 +104,13 @@ raw_input("Program paused. Press Enter to continue...")
 print 'Checking Cost Function (w/ Regularization) ...'
 
 # Weight regularization parameter (we set this to 1 here).
-Lambda = 1
+Lambda = 1.   ## modifie en double
 
 J, _ = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, Lambda)
 
 print 'Cost at parameters (loaded from ex4weights): %f \n(this value should be about 0.383770)' % J
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ================ Part 5: Sigmoid Gradient  ================
@@ -122,7 +125,7 @@ g = sigmoidGradient(np.array([1, -0.5, 0, 0.5, 1]))
 print 'Sigmoid gradient evaluated at [1 -0.5 0 0.5 1]: '
 print g
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ================ Part 6: Initializing Pameters ================
@@ -151,7 +154,7 @@ print 'Checking Backpropagation... '
 #  Check gradients by running checkNNGradients
 checkNNGradients()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## =============== Part 8: Implement Regularization ===============
@@ -170,7 +173,7 @@ debug_J, _ = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_
 
 print 'Cost at (fixed) debugging parameters (w/ lambda = 10): %f (this value should be about 0.576051)\n\n' % debug_J
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## =================== Part 8: Training NN ===================
@@ -202,7 +205,7 @@ Theta1 = np.reshape(nn_params[:hidden_layer_size * (input_layer_size + 1)],
 Theta2 = np.reshape(nn_params[hidden_layer_size * (input_layer_size + 1):],
                    (num_labels, (hidden_layer_size + 1)), order='F').copy()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ================= Part 9: Visualize Weights =================
@@ -214,7 +217,7 @@ print 'Visualizing Neural Network... '
 
 displayData(Theta1[:, 1:])
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## ================= Part 10: Implement Predict =================
 #  After training the neural network, we would like to use it to predict
@@ -228,4 +231,4 @@ accuracy = np.mean(np.double(pred == y)) * 100
 print 'Training Set Accuracy: %f\n'% accuracy
 
 
-raw_input("Program paused. Press Enter to exit...")
+#raw_input("Program paused. Press Enter to exit...")

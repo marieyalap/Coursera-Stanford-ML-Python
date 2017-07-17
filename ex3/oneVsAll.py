@@ -1,9 +1,26 @@
 import numpy as np
-from scipy.optimize import minimize
+
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2")
 
 from lrCostFunction import lrCostFunction
-from ex2.gradientFunctionReg import gradientFunctionReg
+from gradientFunctionReg import gradientFunctionReg
+from scipy.optimize import minimize
+from sigmoid import sigmoid
 
+
+
+#Lambda = 0.1 #
+
+def gradientvectorized (theta, X, y, Lambda):
+    m = y.size
+    theta0=np.copy(theta)
+    np.put(theta0,0,0)
+    #gradvect= dot(X,(sigmoid(dot(X,theta))-y))+(Lambda/m)*theta0
+    gradvect=np.dot((sigmoid(np.dot(X,theta.T))-y.T),X)/m + (Lambda/m)*theta0
+    
+    #gradvect=np.dot(X.T,sigmoid(np.dot(X,theta)))+(Lambda/m)*theta
+    return gradvect
 
 def oneVsAll(X, y, num_labels, Lambda):
     """trains multiple logistic regression classifiers and returns all
@@ -11,37 +28,29 @@ def oneVsAll(X, y, num_labels, Lambda):
         corresponds to the classifier for label i
     """
 
-# Some useful variables
     m, n = X.shape
 
-# You need to return the following variables correctly 
-    all_theta = np.zeros((num_labels, n + 1))
+#    all_theta = np.zeros((num_labels, n + 1))
 
-# Add ones to the X data matrix
     X = np.column_stack((np.ones((m, 1)), X))
 
-# ====================== YOUR CODE HERE ======================
-# Instructions: You should complete the following code to train num_labels
-#               logistic regression classifiers with regularization
-#               parameter lambda. 
-#
-# Hint: theta(:) will return a column vector.
-#
-# Hint: You can use y == c to obtain a vector of 1's and 0's that tell use 
-#       whether the ground truth is true/false for this class.
-#
-# Note: For this assignment, we recommend using fmincg to optimize the cost
-#       function. It is okay to use a for-loop (for c = 1:num_labels) to
-#       loop over the different classes.
+    matY=np.ndarray(shape=(num_labels,m), dtype=float, order='F')
+    initial_theta = np.zeros((n + 1, 1))   
+   
+    for c in range(num_labels) :
+        matY[c] = [1 if i==(c+1) else 0 for i in y]
+  
 
-    # Set Initial theta
-    initial_theta = np.zeros((n + 1, 1))
-
-    # This function will return theta and the cost
-
-
-
-# =========================================================================
+    theta=[]
+    for y in matY :
+         result=minimize(lrCostFunction, initial_theta, method='L-BFGS-B',
+               jac=gradientvectorized, args=(X, y, Lambda),
+               options={'gtol': 1e-4, 'disp': False, 'maxiter': 1000})      
+         theta.append(result.x)
+    
+    all_theta=np.asarray(theta)
+   
 
     return all_theta
+
 

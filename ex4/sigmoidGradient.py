@@ -1,4 +1,6 @@
-from ex2.sigmoid import sigmoid
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex4")
+from sigmoid import sigmoid
 
 def sigmoidGradient(z):
     """computes the gradient of the sigmoid function
@@ -12,5 +14,7 @@ def sigmoidGradient(z):
 
 
 # =============================================================
-
+    g= sigmoid(z)*(1-sigmoid(z))
     return g
+
+

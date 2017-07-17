@@ -6,10 +6,17 @@ use('TkAgg')
 
 import sys
 sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex3")
-
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex2")
+from sigmoid import sigmoid
 from oneVsAll import oneVsAll
+from lrCostFunction import lrCostFunction
+from gradientFunctionReg import gradientFunctionReg
+from oneVsAll import gradientvectorized
+from scipy.optimize import minimize
 from predictOneVsAll import predictOneVsAll
-from displayData import displayData
+
+#from predictOneVsAll import predictOneVsAll
+#from displayData import displayData
 
 
 #  Instructions
@@ -46,11 +53,11 @@ X = data['X']
 y = data['y']
 m, _ = X.shape
 
-# Randomly select 100 data points to display
-rand_indices = np.random.permutation(range(m))
-sel = X[rand_indices[0:100], :]
 
-displayData(sel)
+# Randomly select 100 data points to display
+#rand_indices = np.random.permutation(range(m))
+#sel = X[rand_indices[0:100], :]
+#displayData(sel)
 
 #raw_input("Program paused. Press Enter to continue...")
 
@@ -62,12 +69,13 @@ displayData(sel)
 #  digit dataset.
 #
 
+
 print 'Training One-vs-All Logistic Regression...'
 
 Lambda = 0.1
 all_theta = oneVsAll(X, y, num_labels, Lambda)
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ================ Part 3: Predict for One-Vs-All ================
@@ -76,4 +84,5 @@ pred = predictOneVsAll(all_theta, X)
 
 accuracy = np.mean(np.double(pred == np.squeeze(y))) * 100
 print '\nTraining Set Accuracy: %f\n' % accuracy
+
 
