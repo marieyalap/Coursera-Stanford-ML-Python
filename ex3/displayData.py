@@ -2,9 +2,8 @@ import numpy as np
 from matplotlib import use
 use('TkAgg')
 import matplotlib.pyplot as plt
-import sys
-sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex3")
-#from show import show
+
+from show import show
 
 def displayData(X):
     """displays 2D data
@@ -13,23 +12,19 @@ def displayData(X):
 
 # Compute rows, cols
     m, n = X.shape
-    example_width = round(np.sqrt(n))
-    print example_width
-    example_height = n / example_width
-    print example_height
+    example_width = int(round(np.sqrt(n)))
+    example_height = int(n / example_width)
 
 # Compute number of items to display
-    display_rows = np.floor(np.sqrt(m))               #partie entiere 
-    display_cols = np.ceil(m / display_rows)          # partie entiere plus 1 pour les nb a virgule ex: 2,6 -> 3 mais 2 donne 2
-    print display_rows
-    print display_cols
-    #raw_input("Program paused. Press Enter to continue...")
+    display_rows = np.floor(np.sqrt(m)).astype(np.int)
+    display_cols = np.ceil(m / display_rows).astype(np.int)
+
 # Between images padding
     pad = 1
-#    print pad
-    print (pad + display_rows * (example_height + pad), pad + display_cols * (example_width + pad))
+
 # Setup blank display
-    display_array = - np.ones((pad + display_rows * (example_height + pad), pad + display_cols * (example_width + pad)),dtype=np.float)
+    display_array = - np.ones((pad + display_rows * (example_height + pad),
+                           pad + display_cols * (example_width + pad)))
 
 # Copy each example into a patch on the display array
     curr_ex = 0
@@ -52,5 +47,4 @@ def displayData(X):
     plt.set_cmap('gray')
 # Do not show axis
     plt.axis('off')
-   # show()
-
+#    show()

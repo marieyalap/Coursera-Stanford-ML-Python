@@ -23,7 +23,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     Theta2 = np.reshape(nn_params[hidden_layer_size * (input_layer_size + 1):],
                        (num_labels, (hidden_layer_size + 1)), order='F').copy()
 
-
+ 
 
 # Setup some useful variables
     m, _ = X.shape
@@ -70,39 +70,67 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 ##Partie 1 :
    
     MatY=np.ndarray(shape=(num_labels,m), dtype=float, order='F')
-    for c in range(num_labels) :
-        MatY[c] = [1 if i==(c+1) else 0 for i in y]
+    for col in range(num_labels) :
+        MatY[col] = [1 if i==(col+1) else 0 for i in y]
         
-    y=MatY
-    y.shape
+    MatY
+    MatY.shape
+    # feetforward algorithm
     
-    X = np.column_stack((np.ones((m, 1)), X)) #
-    pred1=sigmoid(np.dot(Theta1,X.T)).T
+    X1 = np.column_stack((np.ones((m, 1)), X)) # a(1)
+    pred1=sigmoid(np.dot(Theta1,X1.T)).T    ##a(2)
     u, _=pred1.shape
     pred1=np.column_stack((np.ones((u,1)),pred1))
-    pred2=sigmoid(np.dot(Theta2,pred1.T)).T
-    pred2.shape
-    J=0
-    G=np.zeros((num_labels,m + 1))
+    pred2=sigmoid(np.dot(Theta2,pred1.T)).T   ##a(3)
+    
     Theta1b=Theta1[:,1:]
     Theta2b=Theta2[:,1:]
     w=np.dot(Theta1b.T,Theta1b)
     c=np.dot(Theta2b.T,Theta2b)
-   
-    a=-np.dot(y,log(pred2))
-    b=np.dot((1-y),log(1-pred2))
-        
+
+    a=-np.dot(MatY,log(pred2))
+    b=np.dot((1-MatY),log(1-pred2))
+    Theta2.shape    
         
     J=(sum(np.diagonal(a)) - sum(np.diagonal(b)))/m + (Lambda/(2*m))*(sum(np.diagonal(c))+sum(np.diagonal(w)))
-    grad=0
+
+    # Backpropagation algorithm
+
+    delta2=0 
+    delta1 = 0
+    
+    d3=pred2 - MatY.T
+    
+    g_prime2=pred1*(1-pred1)
+
+    d2=np.dot(d3,Theta2)*g_prime2
+    
+    d2b = d2[:, 1:]
+    
+    for j in range(m) :
+        delta2 = delta2 + np.outer((d3[j, :]).T,pred1[j, :])
+        delta1 = delta1 + np.outer((d2b[j, :]).T,X1[j, :])
+
+   # gradiant regularized
+    
+    Theta10 = np.copy(Theta1)
+    np.put(Theta10,0,0)
+    
+    Theta20 = np.copy(Theta2)
+    np.put(Theta20,0,0)
+    
 
 
-    # Unroll gradient
-    #grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
+    Theta1_grad = delta1/m + (Lambda/m)*Theta10
+    Theta2_grad = delta2/m + (Lambda/m)*Theta20
+    
+
+    
+     # Unroll gradient
+    grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
 
 
     return J, grad
+   
 
-
-
-       
+ 

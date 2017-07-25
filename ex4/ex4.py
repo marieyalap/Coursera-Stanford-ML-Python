@@ -20,7 +20,7 @@ import numpy as np
 import scipy.io
 from scipy.optimize import minimize
 
-#from ex3.displayData import displayData
+from ex3.displayData import displayData
 from predict import predict #
 from nnCostFunction import nnCostFunction
 from sigmoidGradient import sigmoidGradient
@@ -41,7 +41,7 @@ num_labels = 10          # 10 labels, from 1 to 10
 # Load Training Data
 #print 'Loading and Visualizing Data ...'
 
-data = scipy.io.loadmat(os.getcwd()+'\\Documents\\GitHub\\Coursera-Stanford-ML-Python\\ex4\\ex4data1.mat')
+data = scipy.io.loadmat('ex4/ex4data1.mat')
 X = data['X']
 y = data['y']
 m, _ = X.shape
@@ -63,10 +63,11 @@ displayData(sel)
 print 'Loading Saved Neural Network Parameters ...'
 
 # Load the weights into variables Theta1 and Theta2
-data = scipy.io.loadmat(os.getcwd()+'\\Documents\\GitHub\\Coursera-Stanford-ML-Python\\ex4\\ex4weights.mat')
+data = scipy.io.loadmat('ex4/ex4weights.mat')
 Theta1 = data['Theta1']
 Theta2 = data['Theta2']
 y = np.squeeze(y)
+
 
 # Unroll parameters 
 nn_params = np.hstack((Theta1.T.ravel(), Theta2.T.ravel()))
