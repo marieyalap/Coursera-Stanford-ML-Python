@@ -22,3 +22,5 @@ def trainLinearReg(X, y, Lambda, method='CG', maxiter=200):
     result = minimize(costFunction, initial_theta, method=method, jac=None, options={'disp': True, 'maxiter': maxiter})
 
     return result.x
+
+

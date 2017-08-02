@@ -9,7 +9,7 @@ def validationCurve(X, y, Xval, yval):
     for different values of lambda. You are given the training set (X,
     y) and validation set (Xval, yval).
     """
-
+    m, _ = X.shape
 # Selected values of lambda (you should not change this)
     lambda_vec = np.array([0, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10])
 
@@ -43,5 +43,30 @@ def validationCurve(X, y, Xval, yval):
 
 
 # =========================================================================
+    for j in range(lambda_vec.size) :
+        
+        
+        theta=trainLinearReg(X, y, lambda_vec[j])
+       
+        
+        error_train[j],_=linearRegCostFunction(X, y, theta, 0)
+       
+        error_val[j],_=linearRegCostFunction(Xval, yval, theta, 0) 
+###===========================================================================
+        
+    #for i in range(1,m+1) :
+        
+        #for j in range(lambda_vec.size):
+            #theta=trainLinearReg(X[0:i,:], y[0:i], lambda_vec[j], method='CG', maxiter=200)
+       
+        
+            #error_train[j],_=linearRegCostFunction(X[0:i,:], y[0:i], theta, lambda_vec[j])
+       
+           # error_val[j],_=linearRegCostFunction(Xval, yval, theta, lambda_vec[j])      
+
+
+
+
+
 
     return lambda_vec, error_train, error_val

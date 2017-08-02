@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def getVocabList():
 
     """reads the fixed vocabulary list in vocab.txt
@@ -8,7 +7,8 @@ def getVocabList():
     """
 
 ## Read the fixed vocabulary list
-    with open('vocab.txt') as f:
+    with open('vocab.txt') as f:  
+    #with open('ex6/vocab.txt') as f: 
 
 # Store all dictionary words in cell array vocab{}
 
@@ -18,5 +18,5 @@ def getVocabList():
         for line in f:
             idx, w = line.split()
             vocabList.append(w)
-
+         
     return vocabList

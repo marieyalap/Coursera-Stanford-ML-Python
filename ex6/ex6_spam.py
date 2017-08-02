@@ -15,6 +15,8 @@
 #  For this exercise, you will not need to change any code in this file,
 #  or any other files other than those mentioned above.
 #
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex6")
 import numpy as np
 import scipy.io
 from sklearn import svm
@@ -34,7 +36,7 @@ from getVocabList import getVocabList
 print 'Preprocessing sample email (emailSample1.txt)'
 
 # Extract Features
-file = open('emailSample1.txt', 'r')
+file = open('ex6/emailSample1.txt', 'r')
 file_contents = file.readlines()
 word_indices  = processEmail(''.join(file_contents))
 
@@ -42,7 +44,7 @@ word_indices  = processEmail(''.join(file_contents))
 print 'Word Indices: '
 print word_indices
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## ==================== Part 2: Feature Extraction ====================
 #  Now, you will convert each email into a vector of features in R^n.
@@ -52,7 +54,7 @@ raw_input("Program paused. Press Enter to continue...")
 print 'Extracting features from sample email (emailSample1.txt)'
 
 # Extract Features
-file = open('emailSample1.txt')
+file = open('ex6/emailSample1.txt')
 file_contents = file.readlines()
 word_indices = processEmail(''.join(file_contents))
 features = emailFeatures(word_indices)
@@ -61,7 +63,7 @@ features = emailFeatures(word_indices)
 print 'Length of feature vector: %d'% features.size
 print 'Number of non-zero entries: %d'% sum(features > 0)
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## =========== Part 3: Train Linear SVM for Spam Classification ========
 #  In this section, you will train a linear classifier to determine if an
@@ -121,7 +123,7 @@ print 'Top predictors of spam: '
 for i in range(15):
     print ' %-15s (%f)' %(vocabList[idx[i]], weight[i])
 
-print 'Program paused. Press enter to continue.'
+#print 'Program paused. Press enter to continue.'
 
 ## =================== Part 6: Try Your Own Emails =====================
 #  Now that you've trained the spam classifier, you can use it on your own

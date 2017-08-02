@@ -1,5 +1,5 @@
 import numpy as np
-
+#from getVocabList import getVocabList  #
 
 def emailFeatures(word_indices):
     """takes in a word_indices vector and
@@ -11,6 +11,7 @@ def emailFeatures(word_indices):
 
 # You need to return the following variables correctly.
     x = np.zeros(n)
+    #vocabList = getVocabList()  ##
 # ====================== YOUR CODE HERE ======================
 # Instructions: Fill in this function to return a feature vector for the
 #               given email (word_indices). To help make it easier to 
@@ -51,5 +52,11 @@ def emailFeatures(word_indices):
 
 
 # =========================================================================
-
+#wi = word_indices    
+#wi = np.hstack((wi, wi))
+    
+    for j in word_indices :
+        x[int(j)]=1
+#    
+    
     return x

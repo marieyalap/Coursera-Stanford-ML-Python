@@ -1,5 +1,6 @@
 ## Machine Learning Online Class - Exercise 4 Neural Network Learning
 
+
 #  Instructions
 #  ------------
 # 
@@ -19,6 +20,7 @@ sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex4")
 import numpy as np
 import scipy.io
 from scipy.optimize import minimize
+np.set_printoptions(threshold=np.inf)
 
 from ex3.displayData import displayData
 from predict import predict #

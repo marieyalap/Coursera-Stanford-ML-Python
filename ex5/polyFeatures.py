@@ -6,6 +6,7 @@ def polyFeatures(X, p):
     X_poly(i, :) = [X(i) X(i).^2 X(i).^3 ...  X(i).^p]
     """
 # You need to return the following variables correctly.
+
     X_poly = np.zeros((X.size, p))
 
 # ====================== YOUR CODE HERE ======================
@@ -15,5 +16,10 @@ def polyFeatures(X, p):
 # 
 
 # =========================================================================
-
+    for i in range(p) :
+        X_poly[:,i]=X**(i+1)
+        
+        
     return X_poly
+
+

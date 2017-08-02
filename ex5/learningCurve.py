@@ -17,11 +17,11 @@ def learningCurve(X, y, Xval, yval, Lambda):
 
 # Number of training examples
     m, _ = X.shape
-
+    mval =Xval.shape  ####
 # You need to return these values correctly
     error_train = np.zeros(m)
     error_val   = np.zeros(m)
-
+    y.shape
 # ====================== YOUR CODE HERE ======================
 # Instructions: Fill in this function to return training errors in 
 #               error_train and the cross validation errors in error_val. 
@@ -42,7 +42,6 @@ def learningCurve(X, y, Xval, yval, Lambda):
 #       the training to obtain the theta parameters.
 #
 # Hint: You can loop over the examples with the following:
-#
 #       for i = 1:m
 #           # Compute train/cross validation errors using training examples 
 #           # X(1:i, :) and y(1:i), storing the result in 
@@ -50,7 +49,7 @@ def learningCurve(X, y, Xval, yval, Lambda):
 #           ....
 #           
 #       end
-#
+
 
 # ---------------------- Sample Solution ----------------------
 
@@ -59,5 +58,19 @@ def learningCurve(X, y, Xval, yval, Lambda):
 # -------------------------------------------------------------------------
 
 # =========================================================================
+#X=np.column_stack((np.ones(m), X))
+#Xval=np.column_stack((np.ones(mval), Xval))
+  
+    
+    for i in range(1,m+1) :
+        
+        theta=trainLinearReg(X[0:i,:], y[0:i], Lambda, method='CG', maxiter=200)
+       
+        
+        error_train[i-1],_=linearRegCostFunction(X[0:i,:], y[0:i], theta, 0)
+       
+        error_val[i-1],_=linearRegCostFunction(Xval, yval, theta, 0)      
+
 
     return error_train, error_val
+

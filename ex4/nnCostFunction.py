@@ -13,7 +13,10 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
   The returned parameter grad should be a "unrolled" vector of the
   partial derivatives of the neural network.
     """
-
+    input_layer_size=int(input_layer_size)
+    hidden_layer_size=int(hidden_layer_size)
+    num_labels=int(num_labels)
+    
 # Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 # for our 2 layer neural network
 # Obtain Theta1 and Theta2 back from nn_params
@@ -113,16 +116,13 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
    # gradiant regularized
     
-    Theta10 = np.copy(Theta1)
-    np.put(Theta10,0,0)
-    
-    Theta20 = np.copy(Theta2)
-    np.put(Theta20,0,0)
+    Theta1[:,0]=np.zeros(Theta1.shape[0])
+    Theta2[:,0]=np.zeros(Theta2.shape[0])
+
     
 
-
-    Theta1_grad = delta1/m + (Lambda/m)*Theta10
-    Theta2_grad = delta2/m + (Lambda/m)*Theta20
+    Theta1_grad = delta1/m + (Lambda/m)*Theta1
+    Theta2_grad = delta2/m + (Lambda/m)*Theta2
     
 
     

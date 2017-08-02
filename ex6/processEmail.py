@@ -3,6 +3,7 @@ from porterStemmer import porterStemmer
 from getVocabList import getVocabList
 import re
 
+
 def processEmail(email_contents):
     """preprocesses a the body of an email and
     returns a list of word_indices
@@ -11,12 +12,19 @@ def processEmail(email_contents):
     words contained in the email.
     """
 
+#### a retirer (rajouter par moi)
+
+#file = open('ex6/emailSample1.txt', 'r')
+#file_contents = file.readlines()
+#email_contents=''.join(file_contents)
+
+
+
 # Load Vocabulary
     vocabList = getVocabList()
-
+    
 # Init return value
     word_indices = []
-
 # ========================== Preprocess Email ===========================
 
 # Find the Headers ( \n\n and remove )
@@ -38,6 +46,8 @@ def processEmail(email_contents):
 # Look for one or more characters between 0-9
     rx = re.compile('[0-9]+')
     email_contents = rx.sub('number ', email_contents)
+    #email_contents = rx.sub('dollarnumb ', email_contents) #
+    #email_contents = rx.sub('numb ', email_contents) #
 
 # Handle URLS
 # Look for strings starting with http:// or https://
@@ -50,8 +60,10 @@ def processEmail(email_contents):
     email_contents = rx.sub('emailaddr ', email_contents)
 
 # Handle $ sign
-    rx = re.compile('[$]+')
-    email_contents = rx.sub('dollar ', email_contents)
+    rx = re.compile('[$]+') 
+    email_contents = rx.sub('dollar', email_contents)
+    #email_contents = rx.sub(' ', email_contents) #
+    #email_contents = rx.sub('dollar', email_contents) 
 
 # ========================== Tokenize Email ===========================
 
@@ -64,7 +76,7 @@ def processEmail(email_contents):
 # Remove any non alphanumeric characters
     rx = re.compile('[^a-zA-Z0-9 ]')
     email_contents = rx.sub('', email_contents).split()
-
+    cle=0  #
     for str in email_contents:
 
         # Tokenize and also get rid of any punctuation
@@ -105,8 +117,16 @@ def processEmail(email_contents):
         #       str2). It will return 1 only if the two strings are equivalent.
         #
 
+        #for k in vocabList :
+     #for str in email_contents: # a retirer
+        for k in range(len(vocabList)) :
 
-
+            if (str==vocabList[k]) :
+    
+                cle=k
+              
+                word_indices.append(cle)
+               
 
         # =============================================================
 
@@ -121,4 +141,7 @@ def processEmail(email_contents):
 # Print footer
     print '\n========================='
     return word_indices
-
+#email = list(itertools.compress(email_contents,map(lambda x: x in vocabList, email_contents)))
+#[vocabList.index(x)+1 for x in email]==word_indices
+#email_contents=[porterStemmer(x.strip()) for x in email_contents]
+#zip(email,word_indices)
