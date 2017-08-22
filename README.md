@@ -2,7 +2,7 @@
 
 
 
-Coursera lecture of Andrew Ng : https://www.coursera.org/learn/machine-learning/home/welcome 
+Coursera lecture by Andrew Ng : https://www.coursera.org/learn/machine-learning/home/welcome 
 ```
 Here you will find my implementation of the Course Machine Learning from Coursera.
 I have implemented this using Python. 
