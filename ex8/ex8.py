@@ -1,3 +1,5 @@
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex8")
 from matplotlib import use, cm
 use('TkAgg')
 import numpy as np
@@ -40,7 +42,7 @@ print 'Visualizing example dataset for outlier detection.'
 
 #  The following command loads the dataset. You should now have the
 #  variables X, Xval, yval in your environment
-data = scipy.io.loadmat('ex8data1.mat')
+data = scipy.io.loadmat('ex8/ex8data1.mat')
 X = data['X']
 Xval = data['Xval']
 yval = data['yval'].flatten()
@@ -51,7 +53,7 @@ plt.axis([0, 30, 0, 30])
 plt.xlabel('Latency (ms)')
 plt.ylabel('Throughput (mb/s)')
 show()
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 
 ## ================== Part 2: Estimate the dataset statistics ===================
@@ -77,7 +79,7 @@ plt.xlabel('Latency (ms)')
 plt.ylabel('Throughput (mb/s)')
 show()
 
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 ## ================== Part 3: Find Outliers ===================
 #  Now you will find a good epsilon threshold using a cross-validation set
@@ -98,7 +100,7 @@ outliers = np.where(p < epsilon, True, False)
 plt.plot(X[outliers, 0], X[outliers, 1], 'ro', lw=2, markersize=10, fillstyle='none', markeredgewidth=1)
 show()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## ================== Part 4: Multidimensional Outliers ===================
 #  We will now use the code from the previous part and apply it to a 
@@ -108,7 +110,7 @@ raw_input("Program paused. Press Enter to continue...")
 
 #  Loads the second dataset. You should now have the
 #  variables X, Xval, yval in your environment
-data = scipy.io.loadmat('ex8data2.mat')
+data = scipy.io.loadmat('ex8/ex8data2.mat')
 X = data['X']
 Xval = data['Xval']
 yval = data['yval'].flatten()

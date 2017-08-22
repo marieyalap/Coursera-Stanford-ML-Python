@@ -8,7 +8,7 @@ def loadMovieList():
     """
 
     ## Read the fixed movieulary list
-    with io.open('movie_ids.txt', encoding='ISO-8859-1') as f:
+    with io.open('ex8/movie_ids.txt', encoding='ISO-8859-1') as f:
 
         # Store all movies in cell array movie{}
         n = 1682  # Total number of movies 

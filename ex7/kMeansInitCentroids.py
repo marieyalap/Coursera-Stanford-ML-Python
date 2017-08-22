@@ -13,7 +13,8 @@ def kMeansInitCentroids(X, K):
 # Instructions: You should set centroids to randomly chosen examples from
 #               the dataset X
 #
-
+    randidx=np.random.permutation(X)
+    centroids=X[1:K,:]
 
 # =============================================================
     return centroids

@@ -16,7 +16,8 @@
 #
 #  For this exercise, you will not need to change any code in this file,
 #  or any other files other than those mentioned above.
-
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex7")
 from matplotlib import use
 use('TkAgg')
 import numpy as np
@@ -42,16 +43,16 @@ from show import show
 print 'Visualizing example dataset for PCA.'
 #  The following command loads the dataset. You should now have the 
 #  variable X in your environment
-data = scipy.io.loadmat('ex7data1.mat')
+data = scipy.io.loadmat('ex7/ex7data1.mat')
 X = data['X']
 
 #  Visualize the example dataset
 plt.scatter(X[:, 0], X[:, 1], marker='o', color='b', facecolors='none', lw=1.0)
 plt.axis([0.5, 6.5, 2, 8])
 plt.axis('equal')
-show()
+#show()
 
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 ## =============== Part 2: Principal Component Analysis ===============
 #  You should now implement PCA, a dimension reduction technique. You
@@ -72,13 +73,13 @@ U, S, V = pca(X_norm)
 mu2 = mu + 1.5 * S.dot(U.T)
 plt.plot([mu[0], mu2[0, 0]], [mu[1], mu2[0, 1]], '-k', lw=2)
 plt.plot([mu[0], mu2[1, 0]], [mu[1], mu2[1, 1]], '-k', lw=2)
-show()
+#show()
 
 print 'Top eigenvector: '
 print ' U(:,1) = %f %f ', U[0,0], U[1,0]
 print '(you should expect to see -0.707107 -0.707107)'
 
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 
 ## =================== Part 3: Dimension Reduction ===================
@@ -114,7 +115,7 @@ for i in range(len(X_norm)):
     plt.plot([X_norm[i, 0], X_rec[i, 0]], [X_norm[i, 1], X_rec[i, 1]], '--k')
 
 show()
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 ## =============== Part 4: Loading and Visualizing Face Data =============
 #  We start the exercise by first loading and visualizing the dataset.
@@ -123,13 +124,13 @@ raw_input('Program paused. Press Enter to continue...')
 print 'Loading face dataset.'
 
 #  Load Face dataset
-data = scipy.io.loadmat('ex7faces.mat')
+data = scipy.io.loadmat('ex7/ex7faces.mat')
 X = data['X']
 
 #  Display the first 100 faces in the dataset
 displayData(X[0:100, :])
 
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 ## =========== Part 5: PCA on Face Data: Eigenfaces  ===================
 #  Run PCA and visualize the eigenvectors which are in this case eigenfaces
@@ -147,7 +148,7 @@ U, S, V = pca(X_norm)
 #  Visualize the top 36 eigenvectors found
 displayData(U[:, 1:36].T)
 
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 ## ============= Part 6: Dimension Reduction for Faces =================
 #  Project images to the eigen space using the top k eigenvectors 
@@ -160,7 +161,7 @@ Z = projectData(X_norm, U, K)
 print 'The projected data Z has a size of: '
 print '%d %d'% Z.shape
 
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 ## ==== Part 7: Visualization of Faces after PCA Dimension Reduction ====
 #  Project images to the eigen space using the top K eigen vectors and 
@@ -184,7 +185,7 @@ displayData(X_rec[:100,:])
 plt.title('Recovered faces')
 plt.axis('equal')
 show()
-raw_input('Program paused. Press Enter to continue...')  
+#raw_input('Program paused. Press Enter to continue...')  
 
 
 ## === Part 8(a): Optional (ungraded) Exercise: PCA for Visualization ===
@@ -229,7 +230,7 @@ ax.scatter3D(xs, ys, zs=zs, edgecolors=colors, marker='o', facecolors='none', lw
 
 plt.title('Pixel dataset plotted in 3D. Color shows centroid memberships')
 show()
-raw_input('Program paused. Press Enter to continue...')
+#raw_input('Program paused. Press Enter to continue...')
 
 ## === Part 8(b): Optional (ungraded) Exercise: PCA for Visualization ===
 # Use PCA to project this cloud to 2D for visualization

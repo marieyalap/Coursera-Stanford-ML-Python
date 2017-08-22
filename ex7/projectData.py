@@ -1,3 +1,5 @@
+import numpy as np
+
 def projectData(X, U, K):
     """computes the projection of
     the normalized inputs X into the reduced dimensional space spanned by
@@ -16,6 +18,8 @@ def projectData(X, U, K):
 
 
     # =============================================================
-
-
+    #for i in range(X.shape[0]):
+        
+    Z=np.dot(X,U[:,0:K])
+  
     return Z

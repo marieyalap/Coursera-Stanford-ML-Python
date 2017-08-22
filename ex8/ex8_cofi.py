@@ -14,6 +14,8 @@
 #  For this exercise, you will not need to change any code in this file,
 #  or any other files other than those mentioned above.
 #
+import sys
+sys.path.append("C:\Users\hp\Documents\GitHub\Coursera-Stanford-ML-Python\ex8")
 from matplotlib import use, cm
 use('TkAgg')
 import numpy as np
@@ -34,7 +36,7 @@ from normalizeRatings import normalizeRatings
 print 'Loading movie ratings dataset.'
 
 #  Load data
-data = scipy.io.loadmat('ex8_movies.mat')
+data = scipy.io.loadmat('ex8/ex8_movies.mat')
 Y = data['Y']
 R = data['R'].astype(bool)
 #  Y is a 1682x943 matrix, containing ratings (1-5) of 1682 movies on 
@@ -52,9 +54,9 @@ plt.figure()
 plt.imshow(Y, aspect='equal', origin='upper', extent=(0, Y.shape[1], 0, Y.shape[0]/2.0))
 plt.ylabel('Movies')
 plt.xlabel('Users')
-show()
+#show()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 ## ============ Part 2: Collaborative Filtering Cost Function ===========
 #  You will now implement the cost function for collaborative filtering.
@@ -63,7 +65,7 @@ raw_input("Program paused. Press Enter to continue...")
 #  cofiCostFunc.m to return J.
 
 #  Load pre-trained weights (X, Theta, num_users, num_movies, num_features)
-data = scipy.io.loadmat('ex8_movieParams.mat')
+data = scipy.io.loadmat('ex8/ex8_movieParams.mat')
 X = data['X']
 Theta = data['Theta']
 num_users = data['num_users']
@@ -85,7 +87,7 @@ J, grad = cofiCostFunc(np.hstack((X.T.flatten(), Theta.T.flatten())), Y, R, num_
            
 print 'Cost at loaded parameters: %f \n(this value should be about 22.22)' % J
 
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 
 ## ============== Part 3: Collaborative Filtering Gradient ==============
@@ -98,7 +100,7 @@ print 'Checking Gradients (without regularization) ...'
 #  Check gradients by running checkNNGradients
 checkCostFunction()
 
-raw_input("Program paused. Press Enter to continue...")
+#raw_input("Program paused. Press Enter to continue...")
 
 
 ## ========= Part 4: Collaborative Filtering Cost Regularization ========
@@ -113,7 +115,7 @@ J, grad = cofiCostFunc(np.hstack((X.T.flatten(), Theta.T.flatten())), Y, R, num_
            
 print 'Cost at loaded parameters (lambda = 1.5): %f \n(this value should be about 31.34)\n' % J
 
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 
 ## ======= Part 5: Collaborative Filtering Gradient Regularization ======
@@ -127,7 +129,7 @@ print 'Checking Gradients (with regularization) ...'
 #  Check gradients by running checkNNGradients
 checkCostFunction(1.5)
 
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 
 ## ============== Part 6: Entering ratings for a new user ===============
@@ -165,7 +167,7 @@ for i in range(len(my_ratings)):
     if my_ratings[i] > 0:
         print 'Rated %d for %s\n' % (my_ratings[i], movieList[i])
 
-raw_input("Program paused. Press Enter to continue...")  
+#raw_input("Program paused. Press Enter to continue...")  
 
 
 ## ================== Part 7: Learning Movie Ratings ====================
@@ -176,7 +178,7 @@ raw_input("Program paused. Press Enter to continue...")
 print '\nTraining collaborative filtering...'
 
 #  Load data
-data = scipy.io.loadmat('ex8_movies.mat')
+data = scipy.io.loadmat('ex8/ex8_movies.mat')
 Y = data['Y']
 R = data['R'].astype(bool)
 

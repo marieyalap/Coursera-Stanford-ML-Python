@@ -22,4 +22,8 @@ def pca(X):
 
 
 # =========================================================================
-    return U, S, V
+    cov= np.dot(X.T,X)
+    cov=cov/m
+    U,S,V = np.linalg.svd(cov)
+    
+    return U, np.diag(S), V

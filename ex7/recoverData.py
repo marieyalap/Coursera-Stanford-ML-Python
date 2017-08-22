@@ -1,3 +1,5 @@
+import numpy as np
+
 def recoverData(Z, U, K):
     """
     recovers an approximation the
@@ -20,5 +22,7 @@ def recoverData(Z, U, K):
 
 
     # =============================================================
-
+    X_rec=np.dot(U[:,0:K],Z.T).T
+    
+    
     return X_rec
