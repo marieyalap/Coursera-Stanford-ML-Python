@@ -1,30 +1,44 @@
-# Coursera-Stanford-ML-Python
+##  "Machine Learning" course by "Coursera Stanford" / implementation in Python.
 
-Coursera/Stanford Machine Learning course assignments in Python
 
-[![Join the chat at https://gitter.im/sgang007/Coursera-Stanford-ML-Python](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sgang007/Coursera-Stanford-ML-Python?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Assignments for Andrew Ng's Machine Learning course implemented in Python without solutions in line with the [Coursera Code of Honor](https://www.coursera.org/about/terms/honorcode "Coursera Honor Code"). The code is structurally equivalent to the Matlab implementation from Coursera and the results are numerically equivalent with the correct Python implementation of the incomplete scripts. After completing each assignment, students can submit for grading to the Coursera website by executing the submit.py script. e.g below: (OSX or Linux) (On Windows change "export PYTHONPATH=../" to "set PYTHONPATH=..\")
+Coursera lecture of Andrew Ng : https://www.coursera.org/learn/machine-learning/home/welcome 
+```
+```
+### **Summary** :
+
+* **Ex1** : Linear Regression
+
+  _Implementation of Cost function , Gradient descent, normal equation , normalized features ..._
+
+* **Ex2** : Logistic Regression
+
+  _Implementation of a function to plot classification data, a logistic Regression cost function, a logistic Regression Prediction function ..._
+
+* **Ex3** : Multi-class classification and Neural Network
+
+  _Implementation of a function to Train a one-vs-all multi-class classifier, Predict using a one-vs-all multi-class classifier, Neural network prediction function, ..._
+
+* **Ex4** : Neural Networks Learning
+
+  _Implementation of a function which compute Numerical Gradient, a function to check the difference between the value of gradient and numerical grandient, Neural network prediction function, Neural network cost function, ..._
+
+* **Ex5** : Regularized Linear Regression and Bias v.s Variance
+
+  _Implementation of Regularized linear regression cost function, a function to Generates a learning curve, Generates a cross validation curve, ..._
+
+* **Ex6** : Support Vector Machines/ Application to Spam Classification
+
+  _Implementation of Gaussian kernel for Support Vector Machine, Email preprocessing, Feature extraction from emails, ..._
+
+* **Ex7** : K-means Clustering and Principal Component Analysis
+
+  _Implementation of a function which Projects a data set into a lower dimensional space, Recovers the original data from the   projection, Find closest centroids, Compute centroid means,..._
+
+* **Ex8** : Anomaly Detection and Recommender Systems
+
+  _Implementation of a function which estimate the parameters of a Gaussian distribution with a diagonal covariance matrix, Find a      threshold for anomaly detection, Implement the cost function for collaborative filtering, ..._
+
 
 ```
-cd Coursera-Stanford-ML-Python/ex1
-export PYTHONPATH=../
-python submit.py
-
-login (Email address): 
-token: 
-==
-==                                   Part Name |     Score | Feedback
-==                                   --------- |     ----- | --------
-==                            Warm up exercise |  10 /  10 | Nice work!
-==           Computing Cost (for one variable) |   0 /  40 | 
-==         Gradient Descent (for one variable) |   0 /  50 | 
-==                       Feature Normalization |   0 /   0 | 
-==     Computing Cost (for multiple variables) |   0 /   0 | 
-==   Gradient Descent (for multiple variables) |   0 /   0 | 
-==                            Normal Equations |   0 /   0 | 
-==                                   --------------------------------
-==                                             |  10 / 100 |
 ```
-
-The login credentials will be saved to a file for subsequent submissions. Please see the [wiki](https://github.com/mstampfer/Coursera-Stanford-ML-Python/blob/master/Coursera%20Stanford%20ML%20Python%20wiki.ipynb) for a short tutorial on using Python.
