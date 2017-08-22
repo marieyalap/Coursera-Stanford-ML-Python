@@ -1,9 +1,13 @@
-##  "Machine Learning" course by "Coursera Stanford" / implementation in Python.
+##  Machine Learning course from Coursera (University of Stanford) / implementation in Python.
 
 
 
 Coursera lecture of Andrew Ng : https://www.coursera.org/learn/machine-learning/home/welcome 
 ```
+Here you will find my implementation of the Course Machine Learning from Coursera.
+I have implemented this using Python. 
+All exercises represent different machine learning algorithm such as :
+Logistic Regression, Neural Network, Support Vector Machines or Clustering.
 ```
 ### **Summary** :
 
